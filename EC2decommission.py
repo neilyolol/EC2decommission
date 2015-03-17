@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # Verion 0.1
 # Author: Chao
-#Created @20150317
+# Created @20150317
 #Only support virgina and oregon
 import boto.ec2, boto.ec2.elb
 import sys, time, argparse, ConfigParser, requests, getpass, base64
@@ -57,7 +57,6 @@ def create_base64_string():
 
 
 def remove_instance_from_dns(instance_name):
-    
 
 
 def query_question(question, defalut='yes'):
@@ -86,23 +85,38 @@ def irc_mark(nickname, message):
     url = '''http://telenav-irc.telenav.com:8081/IRC_Requests/?nick=''' + nickname + '''&msg=''' + message
     r = requests.get(url)
 
-
+@hosts(decom)
 def get_tomcat_user():
     tomcat_user = run("ps -ef|grep java|grep -v `whoami`|awk '{print $1}'")
-    return list(set(java_user.split('\r\n')))
+    return list(set(java_user.split('\r\n')))  #like tnuser
 
-
+@hosts(decom)
 def tomcat_home():
     command = '''ps -fC java --noheaders|awk '{for (i=1;i<=NF;i++) { if ( $i ~ /Dcatalina.home/ ) {split($i,x,"="); print x[2]}}}' '''
-    return run(command).splitlines()
+    return run(command).splitlines()  #like /usr/local/apache-tomcat-6.0.20
 
-
+@hosts(decom)
 def home_log_dir(user):
     path = "/home/" + user + "/"
     command = "find " + path + " \( -type d -o -type l \) -name '*log*' -print 2>/dev/null"
     return sudo(command, user=user).splitlines()
 
-
+@hosts(decom)
 def shutdown_tomcat():
+    tomcat_user = get_tomcat_user()
+    for each_user in tomcat_user:
+        tomcat_home = tomcat_home()
+        for each_tomcat_home in tomcat_home:
+            cmd = '''ps aux|grep '%s'|grep -v grep|awk '{print $2}' ''' % each_tomcat_home
+            jid = run(cmd, each_user)
+            cmd = 'kill -9 %s' % jid
+            run(cmd, each_user)
+
+@hosts(decom)
+def tar_log_file():
+
+
+
+
 
 
