@@ -26,10 +26,10 @@
       <file leaf-file-name="EC2decommission.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/EC2decommission.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33211234" vertical-offset="0" max-vertical-offset="819">
-              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+            <state vertical-scroll-proportion="1.2444168" vertical-offset="0" max-vertical-offset="1938">
+              <caret line="59" column="4" selection-start-line="59" selection-start-column="4" selection-end-line="59" selection-end-column="4" />
               <folding>
-                <element signature="e#100#129#0" expanded="true" />
+                <element signature="e#102#131#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -43,6 +43,7 @@
     </FindUsagesManager>
   </component>
   <component name="Git.Settings">
+    <option name="SYNC_SETTING" value="DONT" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
@@ -108,7 +109,16 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/AppData/Local/Apps/2.0/XBAPM1ZE.212/NVE3RPJV.XVW/gith..tion_317444273a93ac29_0002.0008_2d48c3639befcc54/GitHub.exe" />
+    <property name="options.lastSelected" value="vcs.Git" />
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
+  </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings />
+    </option>
   </component>
   <component name="RunManager">
     <configuration default="true" type="tests" factoryName="py.test">
@@ -288,10 +298,10 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/EC2decommission.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33211234" vertical-offset="0" max-vertical-offset="819">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        <state vertical-scroll-proportion="1.2444168" vertical-offset="0" max-vertical-offset="1938">
+          <caret line="59" column="4" selection-start-line="59" selection-start-column="4" selection-end-line="59" selection-end-column="4" />
           <folding>
-            <element signature="e#100#129#0" expanded="true" />
+            <element signature="e#102#131#0" expanded="true" />
           </folding>
         </state>
       </provider>
