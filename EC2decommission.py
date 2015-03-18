@@ -98,7 +98,7 @@ def tomcat_home():
 @hosts(decom)
 def home_log_dir(user):
     path = "/home/" + user + "/"
-    command = "find " + path + " \( -type d -o -type l \) -name '*log*' -print 2>/dev/null"
+    command = "find " + path + " \( -type d -o -type l \) \( -name '*log*' -a ! -name '*login*' \) -print 2>/dev/null"
     return sudo(command, user=user).splitlines()
 
 @hosts(decom)
@@ -114,6 +114,22 @@ def shutdown_tomcat():
 
 @hosts(decom)
 def tar_log_file():
+    users = get_tomcat_user()
+    for user in users:
+        home_log_paths = home_log_dir(user)
+        if len(home_log_paths)>=1:
+            tar_cmd = ''' tar -zcvf /home/%s/logs.tar.gz ''' %user
+            for i in range(0,len(home_log_paths)):
+                tar_cmd+='%s '
+                tar_cmd = tar_cmd % a[i]
+        run("sudo -u "+user+" "+tar_cmd)
+
+
+
+
+
+
+
 
 
 
