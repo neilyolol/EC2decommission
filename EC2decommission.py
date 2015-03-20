@@ -123,6 +123,8 @@ def tar_log_file():
                 tar_cmd+='%s '
                 tar_cmd = tar_cmd % a[i]
         run("sudo -u "+user+" "+tar_cmd)
+        
+
 
 
 
