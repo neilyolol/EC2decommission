@@ -17,7 +17,7 @@ def get_region(instance_name):
     return region
 
 
-def get_elb_with_instanceID(elbconn, instance_id):
+def get_elb_with_instanceid(elbconn, instance_id):
     all_elb = elbconn.get_all_load_balancers()  #get all elb
     lb = []
     for each_lb in all_elb:
@@ -116,14 +116,30 @@ def shutdown_tomcat():
 def tar_log_file():
     users = get_tomcat_user()
     for user in users:
+        cmd = 'cd /home/%s' % user
+        run(cmd)
         home_log_paths = home_log_dir(user)
         if len(home_log_paths)>=1:
-            tar_cmd = ''' tar -zcvf /home/%s/logs.tar.gz ''' %user
+            tar_cmd = ''' tar -zcvf /home/%s/%s-logs.tar.gz ''' % (user,time.strftime('%Y-%m-%d'))
             for i in range(0,len(home_log_paths)):
                 tar_cmd+='%s '
                 tar_cmd = tar_cmd % a[i]
         run("sudo -u "+user+" "+tar_cmd)
-        
+        s3_upload = ''' s3cmd put %s s3://noc-archive-oregon/logs/${HOSTNAME}`pwd`/ ''' % ('/home/%s/%s-logs.tar.gz' % (user,time.strftime('%Y-%m-%d')))
+        run(s3_upload)
+        s3_obj_md5 = run('s3cmd --list-md5 ls s3://noc-archive-oregon/logs/${HOSTNAME}`pwd`%s' % ('/home/%s/%s-logs.tar.gz' % (user,time.strftime('%Y-%m-%d'))) +"|awk '{print $4}' " )
+        local_obj_md5 = run('md5sum %s' %('/home/%s/%s-logs.tar.gz' % (user,time.strftime('%Y-%m-%d')))+"|awk '{print $1}'")
+        if str(s3_obj_md5) == str(local_obj_md5):
+            print "log package has been uploaded to S3 and md5 check pass"
+        else:
+            print "ERROR message"
+            sys.exit(0)
+
+
+
+
+
+
 
 
 
