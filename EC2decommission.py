@@ -9,7 +9,7 @@ from fabric.api import run, env, sudo, execute, local
 
 
 def get_region(instance_name):
-    region_head = instance_name.split('-')[0]  #instance name always be ecX-xxxx-0X
+    region_head = instance_name.split('-')[0]  #instance name always be ecX-xxxx-0X or ecX-xxxx-0X.ecX
     if region_head == 'ec1':
         region = 'us-east-1'
     elif region_head == 'ec2':
@@ -135,6 +135,9 @@ def tar_log_file():
             print "ERROR message"
             sys.exit(0)
 
+
+def stop_instance(instance_id):
+    
 
 
 
